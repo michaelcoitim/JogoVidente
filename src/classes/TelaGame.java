@@ -15,6 +15,8 @@ public class TelaGame extends javax.swing.JFrame {
      */
     public TelaGame() {
         initComponents();
+        lblFrase.setText("<html>Vou pensar um numero entre 1 e 5. Tente advinhar <html/>");
+        lbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/geniopensando.png")));
     }
 
     /**
@@ -30,7 +32,7 @@ public class TelaGame extends javax.swing.JFrame {
         lbl1 = new javax.swing.JLabel();
         controle = new javax.swing.JSpinner();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblFrase = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,49 +40,52 @@ public class TelaGame extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton1.setText("Palpite");
+        jButton1.setHideActionText(true);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 382, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, 100, 40));
 
         lbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/geniopensando.png"))); // NOI18N
-        getContentPane().add(lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, 224, 249));
+        getContentPane().add(lbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, 224, 249));
 
-        controle.setModel(new javax.swing.SpinnerNumberModel(0, 0, 5, 1));
-        getContentPane().add(controle, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 49, -1));
+        controle.setModel(new javax.swing.SpinnerNumberModel(1, 1, 5, 1));
+        getContentPane().add(controle, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 250, 49, -1));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("VALOR");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 339, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 250, -1, -1));
 
-        jLabel3.setText("frase");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
+        lblFrase.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFrase.setText("frase");
+        lblFrase.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(lblFrase, new org.netbeans.lib.awtextra.AbsoluteConstraints(135, 44, 230, 100));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/balão.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int c = Integer.parseInt(controle.getValue().toString());
+        double n = 1 + Math.random() * (6-1); 
+        int valor = (int) n;
         
-        if (c==1){
+        if (c==valor){
            lbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/acertou.png")));
+           lblFrase.setText( "<html> acertou parabéns!</html>");
             
             } 
         else{
-            if(c==2){
+            
                 lbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/geniovcerrou.png")));
-            }
-            if(c==0){
-                lbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/geniopensando.png")));
-            }
-        }
-        
-        
+                lblFrase.setText("<html>Voce Errou pensei no numero <htmal/>"+(Integer.toHexString(valor)));
+            
+        }      
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -124,7 +129,7 @@ public class TelaGame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lbl1;
+    private javax.swing.JLabel lblFrase;
     // End of variables declaration//GEN-END:variables
 }
